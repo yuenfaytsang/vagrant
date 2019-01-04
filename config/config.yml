@@ -1,0 +1,77 @@
+# ########################################################################
+# Author: Steven Yuen Fay Tsang
+# License: GPLv3
+# ########################################################################
+
+###############################################
+# Project Settings
+###############################################
+Project:
+  vm_number: 1 # Number of VM's inside your Vagrant project
+  vm_name: vm # Name & hostname of your VM's
+  vm_ip: 192.168.100.2 # starting IP Address of your VM's
+  vm_ssh_fwd: 2222 
+
+###############################################
+# Default Settings
+###############################################
+Default:
+  default_box: 'yuenfaytsang/centos7'
+  default_memory: 1024
+  default_cpus: 1
+  default_nic: virtio
+
+###############################################
+# Customizations
+###############################################
+# Each VM within the Vagrant project can be customized as stated
+# in the examples below. Currently following customizations 
+# are available for each vm seperatly:
+# - Vagrant Base Box
+# - VM Memory settings
+# - VM CPU settings
+# - Shared folders between guest and host
+# - Forwarding Ports (port mapping)
+#
+# If no customization options are configured, the above mentioned
+# Defaults apply for the VM's that have not been configured to be
+# customized. VM count starts at 0.
+#
+#vm-0:
+#  box: 'archlinux/archlinux'
+#  cpus: 2
+#  memory: 2048
+#  sync:
+#    - guest: /tmp
+#      host: /tmp
+#    - guest: /vagrant
+#      host: '~'
+#  fwd_port:
+#    - guest: 80
+#      host: 8080
+#    - guest: 443
+#      host: 8443
+
+###############################################
+# VM Provisioning
+###############################################
+# When set to ansible, vagrant creates an ansible 
+# directory structure & inventory file. Your vagrant Project can
+# then be modified when running ansible-playbook seperatly.
+#
+# !!! When using the Ansible Provisioner, ansible expects !!!
+# !!! python3 preinstalled on the vagrant box             !!!
+# 
+# When set to shell, vagrant will create a scripts and an VM
+# specific scripts directory in your vagrant project.
+# Those scripts will be executed one after another. Please make
+# sure that you will define the exact order, by prefixing your
+# scripts with e.g. a number. Example:
+# scripts
+#    |____ 01-script.sh
+#    |____ 02-script.sh
+#    |____ . . .
+# After placing your scripts in the desired VM's scripts folder, 
+# they can be executed via 'vagrant provision [VM]'.
+
+#Provisioner: ansible
