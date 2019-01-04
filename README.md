@@ -4,10 +4,13 @@
 The goal of this small project, is to ease the use of vagrant, by making your vagrant Project configurable via a single configuration file, without caring about the vagrant/ruby syntax inside a Vagrantfile.
 
 ## Features
-- Configure your Vagrant project via a configuration file
-- Easy Multi VM environment setup by just declaring the amount of VM's needed
+- Configure your Vagrant project via a simple configuration file
+- Simplify a Multi VM environment setup by just declaring the amount of VM's needed
+- Symplify the configuration of forwarded ports and shared folders
 - Ansible provisioning & automatically generated ansible inventory
 - Easy vagrant shell provisioning for each VM individually by creating a scripts directory sttructure
+
+
 
 
 ## Requirements
@@ -56,7 +59,7 @@ After placing your playbooks, roles, inventory files etc inside the ansible and 
 
 >Note:  
 the Vagrant project currently expects the target VM's to have either python3 installed and available underneath /usr/bin/python3 or your python installation linked to /usr/bin/python3.
-This behavior is beeing configured by the `ansible_python_interpreter directive` in the ansible/group_vars/all file inside your Vagrant project by default.
+This behavior is beeing configured by the `ansible_python_interpreter` directive in the ansible/group_vars/all file inside your Vagrant project by default.
 
 ## Shell Provisioner
 When configuring the shell provisioner, a sripts directory is beeing created inside
