@@ -137,7 +137,7 @@ class VagrantUtils
   def plugin
     return false if Vagrant.has_plugin? 'vagrant-hostmanager'
 
-    system "vagrant plugin install #{plugin}"
+    system 'vagrant plugin install vagrant-hostmanager'
     hostmanager_message
   end
 
