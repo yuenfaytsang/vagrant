@@ -43,6 +43,7 @@ Instead of caring about the vagrant file syntax and editing the vagrant file its
 - Virtual Machine CPU configuration
 - Virtual Machine Default NIC type
 - Virtual Machine shared folders
+- Virtual Machine additional vDisks (only supported with 'yuenfaytsang/centos7' box)
 - Vagrant provisioner Shell & Ansible
   
 ## Ansible Provisioner

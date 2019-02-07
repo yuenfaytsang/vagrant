@@ -3,27 +3,27 @@
 # License: GPLv3
 # ########################################################################
 
-###############################################
+# ########################################################################
 # Project Settings
-###############################################
+# ########################################################################
 Project:
   vm_number: 1 # Number of VM's inside your Vagrant project
   vm_name: vm # Name & hostname of your VM's
   vm_ip: 192.168.100.2 # starting IP Address of your VM's
   vm_ssh_fwd: 2222 
 
-###############################################
+# ########################################################################
 # Default Settings
-###############################################
+# ########################################################################
 Default:
   default_box: 'yuenfaytsang/centos7'
   default_memory: 1024
   default_cpus: 1
   default_nic: virtio
 
-###############################################
+# ########################################################################
 # Customizations
-###############################################
+# ########################################################################
 # Each VM within the Vagrant project can be customized as stated
 # in the examples below. Currently following customizations 
 # are available for each vm seperatly:
@@ -32,6 +32,13 @@ Default:
 # - VM CPU settings
 # - Shared folders between guest and host
 # - Forwarding Ports (port mapping)
+# - Additional vDisks (Size in GB)
+#
+# !!! Note: !!!
+# ========================================================================
+# Supported vagrant boxes to add additional vDisks are:
+#   - yuenfaytsang/centos7
+# ========================================================================
 #
 # If no customization options are configured, the above mentioned
 # Defaults apply for the VM's that have not been configured to be
@@ -51,10 +58,13 @@ Default:
 #      host: 8080
 #    - guest: 443
 #      host: 8443
+#  hdd:
+#    - 10
+#    - 5
 
-###############################################
+# ########################################################################
 # VM Provisioning
-###############################################
+# ########################################################################
 # When set to ansible, vagrant creates an ansible 
 # directory structure & inventory file. Your vagrant Project can
 # then be modified when running ansible-playbook seperatly.

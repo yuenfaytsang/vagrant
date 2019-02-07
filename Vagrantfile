@@ -35,7 +35,7 @@ Vagrant.configure('2') do |vagrant|
       # Modify VirtualBox Settings
       df.vm.provider 'virtualbox' do |vb|
         params = { obj: vb, index: i, cfg: utils.cfg }
-        define = %w[cpus nic memory name gui]
+        define = %w[cpus nic memory name gui hdd]
 
         define.each do |provider|
           VbMod.send(provider, params)

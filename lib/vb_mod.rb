@@ -80,4 +80,53 @@ module VbMod
   def self.define_name(config, index)
     "#{config['Project']['vm_name']}-#{index}"
   end
+
+  # Get the default Virtualbox VM directory path and create
+  # the corresponding VM path based on the VM's name
+  def self.hdd_dir(config, num)
+    folder = IO.popen('VBoxManage list '\
+                      'systemproperties')
+    base = folder.readlines[38].delete("\s\n").split(':')[1]
+    "#{base}/#{config['Project']['vm_name']}-#{num}"
+  end
+
+  # Add disks to a VM
+  def self.add_hdd(params)
+    obj = params[:obj]
+    num = params[:index]
+    config = params[:cfg]
+    dir = VbMod.hdd_dir(config, num)
+
+    config["vm-#{num}"]['hdd'].each_with_index do |size, i|
+      hdd_name = "#{dir}/hdd-00#{i + 2}.vmdk"
+      next if File.exist?(hdd_name)
+
+      VbMod.vbox_storage_cmd(hdd_name, size, i, obj)
+    end
+  end
+
+  # VBox commands to create & attach additional disks
+  def self.vbox_storage_cmd(hdd_name, size, num, obj)
+    obj.customize ['createhd', 'disk', '--filename', hdd_name,
+                   '--size', size * 1024, '--format', 'VMDK',
+                   '--variant', 'Fixed']
+    obj.customize ['storageattach', :id, '--storagectl',
+                   'SATA Controller', '--port', num + 1, '--device',
+                   0, '--type', 'hdd', '--medium', hdd_name]
+  end
+
+  # Wrapper to configure additional disks. Referres to add_hdd
+  def self.hdd(params)
+    num = params[:index]
+    config = params[:cfg]
+
+    case config["vm-#{num}"]['hdd']
+    when nil
+      false
+    else
+      VbMod.add_hdd(params)
+    end
+  rescue StandardError => e
+    puts e.message
+  end
 end
