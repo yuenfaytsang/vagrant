@@ -120,13 +120,13 @@ module VbMod
     num = params[:index]
     config = params[:cfg]
 
+    return false unless ["vm-#{num}"].include? 'hdd'
+
     case config["vm-#{num}"]['hdd']
     when nil
       false
     else
       VbMod.add_hdd(params)
     end
-  rescue StandardError => e
-    puts e.message
   end
 end
