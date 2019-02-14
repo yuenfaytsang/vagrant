@@ -18,6 +18,7 @@ ProvUtils.provisioner(utils.cfg)
 # Main Vagrant project setup
 Vagrant.configure('2') do |vagrant|
   vagrant.ssh.insert_key = false
+  utils.hostmanager(vagrant)
 
   # Setup VM's defined in config.yml
   utils.range.each do |i|
