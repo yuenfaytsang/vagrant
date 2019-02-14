@@ -119,8 +119,7 @@ module VbMod
   def self.hdd(params)
     num = params[:index]
     config = params[:cfg]
-
-    return false unless ["vm-#{num}"].include? 'hdd'
+    return false unless config["vm-#{num}"].include? 'hdd'
 
     case config["vm-#{num}"]['hdd']
     when nil
