@@ -45,7 +45,7 @@ Default:
 # customized. VM count starts at 0.
 #
 #vm-0:
-#  box: 'archlinux/archlinux'
+#  box: 'yuenfaytsang/archlinux'
 #  cpus: 2
 #  memory: 2048
 #  sync:
